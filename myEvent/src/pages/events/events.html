@@ -1,0 +1,182 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home">
+    <h1 class="location">Upcoming Events</h1>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+    <ion-card *ngFor="let e of events ">
+
+        <div *ngFor="let img of eventsImages | async">
+            <div *ngIf="e.EventId == val(img.id)">
+                    <img  class="card-img-top" [src]="img.imageurl" alt="Card image cap">
+            </div>         
+        </div>
+
+        <div  class="t"> 
+            <h1 class="title">{{e.eventTitle}}</h1>
+        </div>
+
+        <ion-item> 
+          <ion-icon name="calendar" item-start large></ion-icon>
+          <h3>Date and Time</h3>
+          <p>{{e.eventStartDate | date:'medium' }}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="navigate" item-left large ></ion-icon>
+          <h3>Location</h3>
+          <p> {{e.eventPostcode}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-list>
+              <ion-item>
+                  <button ion-button  color="secondary" outline item-end icon-left clear>
+                      <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </button>
+                    <button ion-button color="danger" outline item-end icon-left clear>
+                        <ion-icon name="bookmarks"></ion-icon>
+                      </button>
+
+                <button ion-button outline item-end icon-left clear (click)="getEventInfo()" >
+                  <ion-icon name="expand"></ion-icon>
+                  See more 
+                </button>
+
+                <button ion-button color="dark" outline item-end icon-left clear>
+                    <ion-icon name="share"></ion-icon>
+                    Share
+                  </button>
+              </ion-item>  
+            </ion-list>
+        </ion-item>
+
+    </ion-card>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content padding>
+<h1 class="location">Create an Event</h1> 
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label  floating >Postcode</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <br>
+
+    <div>
+        <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+      </div>
+   
+
+
+    
+    <div padding>
+        <button block ion-button>Find</button>
+      </div>
+
+      
+    <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.timeEnds"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+    </ion-item>
+    <br><br>
+    <ion-item>
+        <ion-label>End Date</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.timeEnds"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>End Time</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+    </ion-item>
+    
+    
+
+
+        
+    <ion-item>
+        <ion-label  floating >Descripton</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+  
+
+
+  
+  <div padding>
+    <button block ion-button>Submit</button>
+  </div>
+
+
+</ion-content> -->
+
+
+
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon [name]="item.icon" item-start></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-end>
+        {{item.note}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content> -->

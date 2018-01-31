@@ -1,0 +1,118 @@
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Info</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+
+
+<ion-content padding>
+
+    <ion-card>
+
+        <!-- <img src="https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_960_720.jpg"> -->
+
+        <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+
+          <ion-item class="btns">
+              <!-- <span item-left>18 min</span>
+              <span item-left>(2.6 mi)</span> -->
+              <button ion-button  color="secondary" outline item-start icon-left >
+                  <ion-icon name="checkmark-circle-outline"></ion-icon> Register
+                </button>
+
+                <button ion-button color="danger" outline item icon-left >
+                    <ion-icon name="bookmarks"></ion-icon> Save
+                  </button>
+                  <!-- *ngIf="selectedItem" -->
+              <button  ion-button  outline item-end icon-left >
+                <ion-icon name="share"></ion-icon> Share
+              </button>
+
+            </ion-item>
+
+        <ion-fab right top>
+          <button ion-fab>
+            <ion-icon name="pin"></ion-icon>
+          </button>
+        </ion-fab>
+
+
+        <div  class="t"> 
+            <h1 class="title">Mallorca</h1>
+        </div>
+
+      
+        <ion-item>
+          <ion-icon name="calendar" item-start large></ion-icon>
+          <h3><b >Start </b> Museum of Football</h3>
+          <h3><b>End </b> Museum of Football</h3>
+        </ion-item>
+      
+        <ion-item>
+          <ion-icon name="navigate" item-left large ></ion-icon>
+          <h3>Institute of Fine Cocktails</h3>
+          <h3>14 S. Hop Avenue, Madison, WI 53703</h3>
+        </ion-item>
+            
+        <ion-card-content>
+                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+        </ion-card-content>
+      
+      </ion-card>
+
+<br>
+    <ion-card>
+
+        <div  class="t"> 
+            <h1 class="title">Event Content</h1>
+        </div>
+
+
+      <ion-list>
+          <ion-item>
+              Event Media Content
+              <button  ion-button  outline item-end icon-left clear (click)="getEventMedia()" >
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+          </ion-item>
+
+          <ion-item>
+              Event Speakers
+              <button  ion-button  outline item-end icon-left clear (click)="getEventSpeakers()" >
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+          </ion-item>
+
+          <ion-item>
+              Public Attendees
+              <button  ion-button  outline item-end icon-left clear (click)="getEventAttendees()">
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+          </ion-item>
+
+          <ion-item>
+              About the Organiser
+              <button  ion-button  outline item-end icon-left clear (click)="getEventOrganiser()">
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+          </ion-item>
+
+
+        </ion-list>
+
+       
+        
+    
+      
+    
+    </ion-card>
+      
+</ion-content>
