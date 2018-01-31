@@ -45,7 +45,7 @@ export class AuthenticationProvider {
 
   // Returns current user data
   get currentUser(): any {
-    return this.authenticated ? this.authState : null;
+    return this.authenticated ? this.authState : false;
   }
 
   // Returns
@@ -90,7 +90,7 @@ export class AuthenticationProvider {
   }
 
   private socialSignIn(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.auth.signInWithRedirect(provider)
       .then((credential) => {
         this.authState = credential.user
         this.updateUserData()

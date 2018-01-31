@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { EventsPage } from '../pages/events/events';
 import { EventInfoPage } from '../pages/event-info/event-info';
+import { UserAccountPage } from '../pages/user-account/user-account';
+import { UserRegistrationPage } from '../pages/user-registration/user-registration';
 
 
 
@@ -27,7 +29,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Events', component: EventsPage },
       { title: 'Help', component: EventInfoPage },
-      { title: 'My Account', component: EventInfoPage }
+      { title: 'Login/Signup', component: UserRegistrationPage },
+      { title: 'My Account', component: UserAccountPage }
+      
     ];
 
   }

@@ -15,66 +15,94 @@
 
     <ion-card>
 
-        <!-- <img src="https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_960_720.jpg"> -->
-
-        <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-          </agm-map>
+        </agm-map>
 
-          <ion-item class="btns">
-              <!-- <span item-left>18 min</span>
-              <span item-left>(2.6 mi)</span> -->
-              <button ion-button  color="secondary" outline item-start icon-left >
-                  <ion-icon name="checkmark-circle-outline"></ion-icon> Register
-                </button>
+        <ng-container *ngIf="Eventdata  | async; let items ; else dataAfterValue;" >
+            <div *ngFor="let item of items"> 
+                <ion-item class="btns">
+                      <button ion-button  [disabled]="item.attending"  color="secondary" outline item-start icon-left (click)="updateAttendance(item.$key)" >
+                          <ion-icon name="checkmark-circle-outline"></ion-icon> {{item.attending? 'Registered!' : 'Register'}} 
+                      </button>
 
-                <button ion-button color="danger" outline item icon-left >
-                    <ion-icon name="bookmarks"></ion-icon> Save
+                      <button *ngIf="item.attending" ion-button  color="danger" outline item-start icon-left (click)="cancelAttendance(item.$key)" >
+                        <ion-icon name="checkmark-circle-outline"></ion-icon> Cancel
+                      </button>
+
+                      <button [disabled]="item.bookmarked" ion-button color="danger" outline item icon-left (click)="bookmark(item.$key)" >
+                        <ion-icon name="bookmarks"></ion-icon>{{item.bookmarked? 'Saved!' : 'Save'}} 
+                      </button>
+
+                      <button  ion-button  outline item-end icon-left >
+                        <ion-icon name="share"></ion-icon> Share
+                      </button>
+              </ion-item>
+          </div>
+        </ng-container> 
+
+        <ng-template #dataAfterValue>
+            <div  *ngFor="let user of userdata | async">
+                <ion-item class="btns">
+                  <button ion-button  color="secondary" outline item-start icon-left 
+                  
+                  (click)="AttendEvent(eventData.EventId, eventData.eventTitle, 
+                  eventData.eventStartDate, eventData.eventEndDate,
+                  eventData.eventStreet, eventData.eventPostcode   )">
+
+                      <ion-icon name="checkmark-circle-outline"></ion-icon> Register
                   </button>
-                  <!-- *ngIf="selectedItem" -->
-              <button  ion-button  outline item-end icon-left >
-                <ion-icon name="share"></ion-icon> Share
-              </button>
 
-            </ion-item>
+                  <button ion-button color="danger" outline item icon-left 
+                  (click)="bookmarkEvent(eventData.EventId, eventData.eventTitle, 
+                  eventData.eventStartDate, eventData.eventEndDate,
+                  eventData.eventStreet, eventData.eventPostcode  )" >
+                        <ion-icon name="bookmarks"></ion-icon>Save
+                  </button>
 
+                  <button  ion-button  outline item-end icon-left >
+                    <ion-icon name="share"></ion-icon> Share
+                  </button>
+              </ion-item>
+            </div>
+        </ng-template >
+        
         <ion-fab right top>
-          <button ion-fab>
-            <ion-icon name="pin"></ion-icon>
-          </button>
+            <button ion-fab>
+                <ion-icon name="pin"></ion-icon>
+            </button>
         </ion-fab>
 
-
+      
         <div  class="t"> 
-            <h1 class="title">Mallorca</h1>
+            <h1 class="title">{{eventData.eventTitle}}</h1>
         </div>
 
       
         <ion-item>
           <ion-icon name="calendar" item-start large></ion-icon>
-          <h3><b >Start </b> Museum of Football</h3>
-          <h3><b>End </b> Museum of Football</h3>
+          <h3><b>Start</b> {{eventData.eventStartDate | date:'medium' }}</h3>
+          <h3><b>End</b> {{eventData.eventEndDate | date:'medium' }}</h3>
         </ion-item>
       
         <ion-item>
           <ion-icon name="navigate" item-left large ></ion-icon>
-          <h3>Institute of Fine Cocktails</h3>
-          <h3>14 S. Hop Avenue, Madison, WI 53703</h3>
+          <h3>{{eventStreet}}</h3>
+          <p>{{eventCity}}</p>
+          <h3>{{eventData.eventPostcode}}</h3>
         </ion-item>
             
         <ion-card-content>
-                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+          {{eventData.eventDescription}}
         </ion-card-content>
       
       </ion-card>
 
 <br>
     <ion-card>
-
         <div  class="t"> 
             <h1 class="title">Event Content</h1>
         </div>
-
 
       <ion-list>
           <ion-item>
@@ -105,14 +133,7 @@
                 </button>
           </ion-item>
 
-
         </ion-list>
-
-       
-        
-    
-      
-    
     </ion-card>
       
 </ion-content>

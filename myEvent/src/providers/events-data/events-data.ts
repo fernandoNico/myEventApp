@@ -25,15 +25,26 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class EventsDataProvider {
 
+  apiKey = 'kH6Iob66dkqdMFQThCczyQ12057';
+
+
   constructor(public http: HttpClient) {
     console.log('Hello EventsDataProvider Provider');
   }
 
 
   getEvents() {
-    return this.http.get<any[]>(('http://localhost:56647/api/Events')).map(actions=>{
+    return this.http.get<any[]>(('http://localhost:56647/api/Events'))
+    .map(actions=>{
       return actions;
-    })
+    }).catch(this.handleError);
+  }
+
+  getEventPostcode(postcode: string) {
+    return this.http.get('https://api.getAddress.io/find/' + postcode + '?api-key=' + this.apiKey)
+    .map(data=>{
+      return data;
+    }).catch(this.handleError);
   }
 
 

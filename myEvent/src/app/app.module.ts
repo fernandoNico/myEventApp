@@ -33,9 +33,13 @@ import { EventAttendeesPage } from '../pages/event-attendees/event-attendees';
 import { EventContentPage } from '../pages/event-content/event-content';
 import { EventOrganiserPage } from '../pages/event-organiser/event-organiser';
 import { EventSpeakersPage } from '../pages/event-speakers/event-speakers';
-
-
-
+import { UserAccountPage } from '../pages/user-account/user-account';
+import { UserRegistrationPage } from '../pages/user-registration/user-registration';
+import { UserEventsRegisteredPage } from '../pages/user-events-registered/user-events-registered';
+import { UserEventsBookmarkedPage } from '../pages/user-events-bookmarked/user-events-bookmarked';
+import { UserEventFilesPage } from '../pages/user-event-files/user-event-files';
+import { UserEventUploadPage } from '../pages/user-event-upload/user-event-upload';
+import { UserEventWebsitePage } from '../pages/user-event-website/user-event-website';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBuoYFbFdmv9oz8KHwGSnKAyf6wF5UHXgM",
@@ -57,7 +61,15 @@ const firebaseConfig = {
     EventAttendeesPage , 
     EventContentPage, 
     EventOrganiserPage, 
-    EventSpeakersPage
+    EventSpeakersPage,
+    UserAccountPage,
+    UserEventsRegisteredPage,
+    UserRegistrationPage,
+    UserEventsBookmarkedPage,
+    UserEventFilesPage,
+    UserEventUploadPage,
+    UserEventWebsitePage
+    
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(),
@@ -82,7 +94,15 @@ const firebaseConfig = {
     EventAttendeesPage , 
     EventContentPage, 
     EventOrganiserPage, 
-    EventSpeakersPage
+    EventSpeakersPage,
+    UserAccountPage,
+    UserRegistrationPage,
+    UserEventsRegisteredPage,
+    UserEventsBookmarkedPage,
+    UserEventFilesPage,
+    UserEventUploadPage,
+    UserEventWebsitePage
+  
   ],
   providers: [
     StatusBar,

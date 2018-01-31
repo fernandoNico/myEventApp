@@ -41,8 +41,8 @@ export class EventsPage {
       }
     });
   }
-  getEventInfo(){
-    this.navCtrl.push(EventInfoPage)
+  getEventInfo(eventos){
+    this.navCtrl.push(EventInfoPage, {eventos})
   }
 
   val(num: any){

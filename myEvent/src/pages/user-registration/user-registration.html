@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>{{userReg? 'Login' : 'Sign Up'}} </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+
+
+<ion-content padding  >
+  <div *ngIf="!u">
+   <ion-list>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input [(ngModel)]="email" type="email" value=""></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input [(ngModel)]="password"  type="password" value=""></ion-input>
+        </ion-item>
+   
+        <div padding  class="center">
+            <button ion-button outline item-end icon-left clear (click)="login()" >
+                Forgot Password ?
+            </button>
+            <button *ngIf="userReg" ion-button primary block floating (click)="login()">Log in</button>
+            <button *ngIf="!userReg" ion-button primary block floating (click)="login()">Sign Up</button>
+        </div>
+  </ion-list>
+     
+  <div  class="center">
+     
+      <ion-item>
+             
+            <p>Don't have an account?</p>   
+            <button ion-button outline item-end icon-left clear (click)="userReg = !userReg" >
+                Sign Up
+            </button>
+      </ion-item>
+         
+  </div><br>
+
+  <div padding  class="center">
+          <h1>Social Media Login</h1>
+          <button ion-button color="danger" icon-start full (click)="signInWithGoogle()" >Google</button>
+          <button ion-button icon-start full (click)="signInWithFacebook()" >Facebook</button>
+          <button ion-button color="dark" icon-start full (click)="signInWithGoogle()" >Twitter</button>
+  </div>
+    
+</div>
+
+<div class="center"*ngIf="u">
+
+    <ion-card>
+        <ion-card-header>
+          Already Logged in...
+        </ion-card-header>
+        <ion-card-content>
+              <button ion-button outline item  clear (click)="redirect()" >
+                 Go to My Account !
+              </button>
+        </ion-card-content>
+    </ion-card>
+
+</div>
+
+</ion-content>
+
+
+
+<!-- <ion-content padding   class="center" #alreadyLoggedIn>
+    
+</ion-content> -->

@@ -1,0 +1,123 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Account</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+
+<ion-content padding>
+    <ion-fab top right edge>
+        <button ion-fab color="danger" (click)="logout()" >Logout</button>
+        
+      </ion-fab>
+    <ion-card>
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="https://cdn.pixabay.com/photo/2016/11/08/05/40/actor-1807557_960_720.jpg">
+          </ion-avatar>
+          <h1>Fernando Nicolalde</h1>
+          <button ion-button outline  color="dark" item-end icon-left  (click)="editName = !editName" > Edit 
+          </button> 
+          <p>nicolalde3006@gmail.com</p>
+        </ion-item>
+        <br>
+
+        <div *ngIf="editName">
+            <ion-list>
+                <ion-item>
+                    <ion-input type="text" placeholder="Username"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <button ion-button small    (click)="updateName()">Update Name</button>
+               </ion-item>    
+            </ion-list>
+        </div>
+        
+
+        <img src="https://cdn.pixabay.com/photo/2016/11/08/05/40/actor-1807557_960_720.jpg">
+      
+        <ion-card-content>
+            <ion-item>
+          <h2><b>Sumary</b></h2> 
+          <button ion-button outline  color="dark" item-end icon-left  (click)="editSummary = !editSummary" > Edit 
+            </button> </ion-item>
+          <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        </ion-card-content>
+
+        <div *ngIf="editSummary">
+            <ion-list>
+                <ion-item>
+                    <ion-input type="text" placeholder="Summary"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <button ion-button small    (click)="updateSummary()">Update Sumary</button>
+               </ion-item>    
+            </ion-list>
+        </div>
+
+        <ion-card-content>
+        <p>Change Profile Picture</p> 
+        <input type="file"  (change)="detectFiles($event)" name="file"><br>
+        <!-- <button *ngIf="selectedFiles"ion-button  (click)="uploadSingle()">Upload</button><br><br> -->
+       
+            <button ion-button small  [disabled]="!selectedFiles"    (click)="uploadSingle()" >Upload</button>
+        
+      </ion-card-content>
+
+      </ion-card>
+
+<br>
+      <ion-card>
+          <div  class="t"> 
+              <h1 class="title">User Content</h1>
+          </div>
+  
+        <ion-list>
+            <ion-item>
+                Registered Events
+                <button  ion-button  outline item-end icon-left clear (click)="getRegisteredEvents()" >
+                    <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+            </ion-item>
+  
+            <ion-item>
+                Bookmarked Events
+                <button  ion-button  outline item-end icon-left clear (click)="getBookmarkedEvents()" >
+                    <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+            </ion-item>
+  
+            <ion-item>
+                Files
+                <button  ion-button  outline item-end icon-left clear (click)="getUserFiles()">
+                    <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+            </ion-item>
+  
+            <ion-item>
+                Upload 
+                <button  ion-button  outline item-end icon-left clear (click)="UploadFiles()">
+                    <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+            </ion-item>
+
+            <ion-item>
+                Personal Website
+                <button  ion-button  outline item-end icon-left clear (click)="getUserWebsite()">
+                    <ion-icon name="arrow-forward"></ion-icon>
+                  </button>
+            </ion-item>
+
+  
+          </ion-list>
+      </ion-card>
+
+   
+     
+
+</ion-content>
