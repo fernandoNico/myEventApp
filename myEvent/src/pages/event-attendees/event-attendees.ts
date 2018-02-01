@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UserPublicProfilePage } from '../user-public-profile/user-public-profile';
 
 /**
  * Generated class for the EventAttendeesPage page.
@@ -22,4 +23,8 @@ export class EventAttendeesPage {
     console.log('ionViewDidLoad EventAttendeesPage');
   }
 
+
+  getUserPublicProfile(){
+    this.navCtrl.push(UserPublicProfilePage)
+  }
 }

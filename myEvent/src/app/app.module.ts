@@ -40,6 +40,8 @@ import { UserEventsBookmarkedPage } from '../pages/user-events-bookmarked/user-e
 import { UserEventFilesPage } from '../pages/user-event-files/user-event-files';
 import { UserEventUploadPage } from '../pages/user-event-upload/user-event-upload';
 import { UserEventWebsitePage } from '../pages/user-event-website/user-event-website';
+import { UserPublicProfilePage } from '../pages/user-public-profile/user-public-profile';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBuoYFbFdmv9oz8KHwGSnKAyf6wF5UHXgM",
@@ -68,7 +70,8 @@ const firebaseConfig = {
     UserEventsBookmarkedPage,
     UserEventFilesPage,
     UserEventUploadPage,
-    UserEventWebsitePage
+    UserEventWebsitePage,
+    UserPublicProfilePage
     
   ],
   imports: [
@@ -101,7 +104,8 @@ const firebaseConfig = {
     UserEventsBookmarkedPage,
     UserEventFilesPage,
     UserEventUploadPage,
-    UserEventWebsitePage
+    UserEventWebsitePage,
+    UserPublicProfilePage
   
   ],
   providers: [

@@ -17,7 +17,7 @@ export class UserEventWebsitePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
+  editWebsite: boolean= false;
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserEventWebsitePage');
   }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the UserEventUploadPage page.
+ * Generated class for the UserPublicProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-user-event-upload',
-  templateUrl: 'user-event-upload.html',
+  selector: 'page-user-public-profile',
+  templateUrl: 'user-public-profile.html',
 })
-export class UserEventUploadPage {
-  selectedFiles: FileList | null;
+export class UserPublicProfilePage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserEventUploadPage');
-  }
-
-  detectFiles($event: Event) {
-    this.selectedFiles = ($event.target as HTMLInputElement).files;
+    console.log('ionViewDidLoad UserPublicProfilePage');
   }
 
 }

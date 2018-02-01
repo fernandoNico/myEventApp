@@ -14,5 +14,31 @@
 
 
 <ion-content padding>
+  <h1 class="location">Website</h1>
+   
+      <button ion-button small    (click)="editWebsite =!editWebsite" >
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button><br>
 
+      <button ion-button small     (click)="editWebsite =!editWebsite" >
+          <ion-icon name="close"></ion-icon>
+      </button><br>
+
+      <a ion-button href="https://as.com/"  item-left>
+        https://as.com/
+      </a>
+
+    <br>
+      <div *ngIf="editWebsite" >
+          <ion-list>
+              <ion-item>
+                  <ion-input type="text" placeholder="Website"></ion-input>
+              </ion-item>
+              <ion-item>     
+                <button ion-button small  (click)="updateWebsite()" item-left>Update</button>
+                      
+             </ion-item>    
+          </ion-list>
+      </div>
+               
 </ion-content>
