@@ -28,12 +28,13 @@ export class EventInfoPage {
   vale: boolean = false;
       
   title: string = 'My first AGM project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number ;
+  lng: number ;
   zoom: number = 15;
 
   Street: string;
   eventCity: string;
+  postocode: string;
 
 
   Eventdata: Observable<any[]>;
@@ -63,8 +64,9 @@ export class EventInfoPage {
         let  myString = this.eventInfo.eventStreet;
         let splits = myString.split(',', );
         console.log(splits)
-         this.Street = splits[0];
+        this.Street = splits[0];
         this.eventCity = splits[5];
+        this.postocode =  this.eventInfo.eventPostcode
 
         console.log(this.eventInfo)
         console.log(this.eventInfo.eventStreet)
@@ -73,6 +75,9 @@ export class EventInfoPage {
         .map(items => items.filter(item => item.eventId == this.eventInfo.EventId))
         .filter(items => items && items.length > 0 );
         console.log(this.Eventdata);
+
+        this.findAddress(this.postocode);
+        
 
       }
     });
@@ -85,7 +90,7 @@ export class EventInfoPage {
     // console.log(this.eventData)
     // console.log(this.eventData.eventPostcode)
     // console.log(this.eventData.eventStreet)
-    // this.findAddress();
+ 
 
    
 
@@ -145,9 +150,9 @@ export class EventInfoPage {
 
 
   //
-  findAddress() {
+  findAddress(p: string) {
 
-    this.eventService.getEventPostcode(this.eventData.eventPostcode).subscribe(
+    this.eventService.getEventPostcode(p).subscribe(
       (Data)=>{
         if (Data == null) {
           console.log('Postcode do not exist!');
@@ -161,6 +166,8 @@ export class EventInfoPage {
         }
     },
         (error) => {
+          this.lat = 51.678418;
+          this.lng  = 7.809007;
           console.log('Problem with the service');
           console.log(error);
         }

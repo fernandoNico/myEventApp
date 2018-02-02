@@ -46,9 +46,14 @@
 
   <div padding  class="center">
           <h1>Social Media Login</h1>
-          <button ion-button color="danger" icon-start full (click)="signInWithGoogle()" >Google</button>
-          <button ion-button icon-start full (click)="signInWithFacebook()" >Facebook</button>
-          <button ion-button color="dark" icon-start full (click)="signInWithGoogle()" >Twitter</button>
+          <button ion-button color="danger"  icon-right full (click)="signInWithGoogle()">  Google
+            <ion-icon name="logo-googleplus"></ion-icon></button>
+          <button ion-button icon-right full (click)="signInWithFacebook()" > Facebook
+            <ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-button color="dark" icon-right full (click)="signInWithGoogle()" > Twitter
+            <ion-icon name="logo-twitter"></ion-icon></button>
+
+         
   </div>
     
 </div>

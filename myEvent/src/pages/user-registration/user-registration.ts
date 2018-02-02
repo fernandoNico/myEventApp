@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastOptions } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { UserAccountPage } from '../user-account/user-account';
 import { EventsPage } from '../events/events';
 import { HomePage } from '../home/home';
 import { MyApp } from '../../app/app.component';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 /**
  * Generated class for the UserRegistrationPage page.
@@ -28,9 +29,11 @@ export class UserRegistrationPage {
 
   u: any;
 
+  toastOptions: ToastOptions;
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     public auth: AuthenticationProvider
+     public auth: AuthenticationProvider, private toast: ToastController
     ) {
       // if(this.auth.currentUser){
       //   this.navCtrl.push(UserAccountPage);
@@ -103,11 +106,18 @@ export class UserRegistrationPage {
     /// Shared
   
     private afterSignIn(): void {
-      // Do after login stuff here, such router redirects, toast messages, etc.
-      // this.router.navigate(['']);
-      // this.notify.update('Welcome to Firestarter!!!', 'info');
+
       console.log("Login success!!!")
-      this.navCtrl.push(MyApp);
+      this.toastOptions = {
+        message: 'You have logged in successfully',
+        position: 'top',
+        duration: 3000,
+        // showCloseButton: true,
+        // closeButtonText: 'close',
+        // cssClass: 'styles'
+      }
+      this.toast.create(this.toastOptions).present();
+      this.navCtrl.push(MyApp,);
     }
 
 }

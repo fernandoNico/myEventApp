@@ -5,6 +5,16 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-fab right middle>
+        <button ion-fab mini><ion-icon name="share"></ion-icon></button>
+        <ion-fab-list>
+          <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+
       <ion-card *ngFor="let user of userdata | async">
             <ion-item>
                   <ion-avatar item-start>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, ToastController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { UserEventsRegisteredPage } from '../user-events-registered/user-events-registered';
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map'
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { UploadFile } from '../../providers/firebase-data/file';
 import { MyApp } from '../../app/app.component';
+import { ToastOptions } from 'ionic-angular/components/toast/toast-options';
 
 @IonicPage()
 @Component({
@@ -22,25 +23,48 @@ import { MyApp } from '../../app/app.component';
 export class UserAccountPage {
   userInfo: Observable<any[]>;
   currentUpload: UploadFile;
-
   selectedFiles: FileList | null;
   editName: boolean= false;
   editSummary: boolean= false;
 
+  toastOptions: ToastOptions;
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-    public auth: AuthenticationProvider,
-    private upSvc: FirebaseDataProvider,) {
+              public navParams: NavParams,
+              public auth: AuthenticationProvider,
+                private upSvc: FirebaseDataProvider,
+              private toast: ToastController) {
 
       
-  console.log(this.auth.currentUserId)
+  // console.log(this.auth.currentUserId)
   this.userInfo = this.upSvc.getUserData(this.auth.currentUserId);
   console.log(this.userInfo)
-  
-
+  // console.log(this.auth.authenticated);
 
   }
+
+  ionViewCanEnter(){
+
+      if(!this.auth.authenticated){
+        console.log("No access");
+        this.toastOptions = {
+          message: 'Acess Denied! Must Login',
+          position: 'top',
+          duration: 3000,
+          // showCloseButton: true,
+          // closeButtonText: 'close',
+          cssClass: 'styles'
+
+          
+        }
+
+        this.toast.create(this.toastOptions).present();
+      }
+
+    return this.auth.authenticated;
+   
+  }
+
 
 
   changeUserName(name: string){
@@ -52,6 +76,20 @@ export class UserAccountPage {
   logout(){
     this.auth.signOut();
     this.navCtrl.push(MyApp)
+
+    this.toastOptions = {
+      message: 'You have logged off successfully',
+      position: 'top',
+      duration: 3000,
+      // showCloseButton: true,
+      // closeButtonText: 'close',
+      cssClass: 'styles'
+
+      
+    }
+
+    this.toast.create(this.toastOptions).present();
+
   }
 
   ionViewDidLoad() {
