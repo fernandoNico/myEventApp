@@ -4,6 +4,7 @@ import { AuthenticationProvider } from '../../providers/authentication/authentic
 import { UserAccountPage } from '../user-account/user-account';
 import { EventsPage } from '../events/events';
 import { HomePage } from '../home/home';
+import { MyApp } from '../../app/app.component';
 
 /**
  * Generated class for the UserRegistrationPage page.
@@ -106,7 +107,7 @@ export class UserRegistrationPage {
       // this.router.navigate(['']);
       // this.notify.update('Welcome to Firestarter!!!', 'info');
       console.log("Login success!!!")
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(MyApp);
     }
 
 }
