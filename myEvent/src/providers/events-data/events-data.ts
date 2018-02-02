@@ -40,6 +40,13 @@ export class EventsDataProvider {
     }).catch(this.handleError);
   }
 
+  getEventById(id: number) {
+    return this.http.get('http://localhost:56647/api/Events/' + id )
+    .map(actions=>{
+      return actions;
+    }).catch(this.handleError);
+  }
+
   getEventPostcode(postcode: string) {
     return this.http.get('https://api.getAddress.io/find/' + postcode + '?api-key=' + this.apiKey)
     .map(data=>{

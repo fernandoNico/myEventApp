@@ -39,20 +39,28 @@
         <ion-item>
           <ion-list>
               <ion-item>
-                  <button ion-button  color="secondary" outline item-end icon-left clear>
-                      <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    </button>
-                    <button ion-button color="danger" outline item-end icon-left clear>
-                        <ion-icon name="bookmarks"></ion-icon>
-                      </button>
 
-                <button ion-button outline item-end icon-left clear (click)="getEventInfo(e)" >
-                  <ion-icon name="expand"></ion-icon>
-                  See more 
-                </button>
+                  <div *ngFor="let ev of userSavedEvents | async">
+                      <p *ngIf="val(ev.eventId) == e.EventId" >
+                          <button ion-button outline item-end icon-left clear 
+                              *ngIf="ev.attending"   >
+                              <ion-icon name="body"></ion-icon>
+                              Registered 
+                          </button>
+                              <!-- <button  *ngIf="ev.attending" c > <i class="fa fa-check" aria-hidden="true"></i>
+                              Registered
+                              </button> -->
+                      </p>
+                  </div>
+                  
 
-                <button ion-button color="dark" outline item-end icon-left clear>
-                    <ion-icon name="share"></ion-icon>
+                  <button ion-button color="dark" outline item-end icon-right clear
+                  (click)="getEventInfo(e.EventId)"> See more
+                      <ion-icon name="arrow-forward"></ion-icon>                   
+                  </button>
+
+                  <button ion-button color="dark" outline item-end icon-left clear>
+                      <ion-icon name="share"></ion-icon>
                     Share
                   </button>
               </ion-item>  

@@ -22,7 +22,7 @@ import { AuthenticationProvider } from '../../providers/authentication/authentic
   templateUrl: 'event-info.html',
 })
 export class EventInfoPage {
-
+  eId: number;
   eventData: any;
   addressList: any;
   vale: boolean = false;
@@ -32,13 +32,15 @@ export class EventInfoPage {
   lng: number = 7.809007;
   zoom: number = 15;
 
-  eventStreet: string;
+  Street: string;
   eventCity: string;
 
 
   Eventdata: Observable<any[]>;
   userdata: Observable<any[]>;
 
+  eventInfo:any;
+  maint: string;
 
 
   constructor( public navParams: NavParams, 
@@ -47,32 +49,57 @@ export class EventInfoPage {
     private upSvc: FirebaseDataProvider,
     public authentication: AuthenticationProvider,) {
 
-    this.eventData = this.navParams.get('eventos');
-    console.log(this.eventData)
-    console.log(this.eventData.eventPostcode)
-    console.log(this.eventData.eventStreet)
-    this.findAddress();
+    // this.eventData = this.navParams.get('id');
+    this.eId = this.navParams.get('id')
+    console.log(this.eId)
 
-    var myString = this.eventData.eventStreet;
-    var splits = myString.split(',', );
+    this.userdata = this.upSvc.getUserData(this.authentication.currentUserId);
 
-    this.eventStreet = splits[0];
-    this.eventCity = splits[5];
+   
+
+    this.eventService.getEventById(this.eId).subscribe(eventos => {
+      if(eventos){
+        this.eventInfo = eventos
+        let  myString = this.eventInfo.eventStreet;
+        let splits = myString.split(',', );
+        console.log(splits)
+         this.Street = splits[0];
+        this.eventCity = splits[5];
+
+        console.log(this.eventInfo)
+        console.log(this.eventInfo.eventStreet)
+
+        this.Eventdata = this.upSvc.getUserEvents(this.authentication.currentUserId)
+        .map(items => items.filter(item => item.eventId == this.eventInfo.EventId))
+        .filter(items => items && items.length > 0 );
+        console.log(this.Eventdata);
+
+      }
+    });
+
+  }
+
+    // this.eventInfo = this.eventService.getEventById(this.eId);
+    // console.log(this.eventInfo)
+
+    // console.log(this.eventData)
+    // console.log(this.eventData.eventPostcode)
+    // console.log(this.eventData.eventStreet)
+    // this.findAddress();
+
+   
 
 
-    this.userdata = this.upSvc.getUserData("zpicpKtAjIdUlPaPYmcg7HXoVyA2");
+    
       
     
-    this.Eventdata = this.upSvc.getUserEvents("zpicpKtAjIdUlPaPYmcg7HXoVyA2")
-      .map(items => items.filter(item => item.eventId ==this.eventData.EventId))
-      .filter(items => items && items.length > 0 );
-      console.log(this.Eventdata);
+    
 
     // console.log(splits[0]);
     // console.log(splits[5]);
 
 
-  }
+  //}
 
 
   ionViewDidLoad() {
@@ -151,14 +178,16 @@ export class EventInfoPage {
   
 
 
-  getEventMedia(){
-     this.navCtrl.push(EventContentPage)
+  getEventMedia(eventid){
+    console.log(eventid)
+     this.navCtrl.push(EventContentPage,{eventid});
+
   }
   getEventSpeakers(){
      this.navCtrl.push(EventSpeakersPage)
   }
-  getEventAttendees(){
-     this.navCtrl.push(EventAttendeesPage)
+  getEventAttendees(eId){
+     this.navCtrl.push(EventAttendeesPage,{eId})
   }
   getEventOrganiser(){
      this.navCtrl.push(EventOrganiserPage)

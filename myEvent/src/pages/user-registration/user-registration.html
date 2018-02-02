@@ -15,20 +15,20 @@
    <ion-list>
         <ion-item>
           <ion-label floating>Email</ion-label>
-          <ion-input [(ngModel)]="email" type="email" value=""></ion-input>
+          <ion-input [(ngModel)]="UserEmail" type="email" value=""></ion-input>
         </ion-item>
       
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input [(ngModel)]="password"  type="password" value=""></ion-input>
+          <ion-input [(ngModel)]="UserPassword"  type="password" value=""></ion-input>
         </ion-item>
    
         <div padding  class="center">
-            <button ion-button outline item-end icon-left clear (click)="login()" >
+            <button *ngIf="userReg" ion-button outline item-end icon-left clear (click)="userlogin()" >
                 Forgot Password ?
             </button>
-            <button *ngIf="userReg" ion-button primary block floating (click)="login()">Log in</button>
-            <button *ngIf="!userReg" ion-button primary block floating (click)="login()">Sign Up</button>
+            <button *ngIf="userReg" ion-button primary block floating (click)="userlogin()">Log in</button>
+            <button *ngIf="!userReg" ion-button primary block floating (click)="userSignUp()">Sign Up</button>
         </div>
   </ion-list>
      
@@ -38,7 +38,7 @@
              
             <p>Don't have an account?</p>   
             <button ion-button outline item-end icon-left clear (click)="userReg = !userReg" >
-                Sign Up
+                {{userReg? 'Sign Up' : 'Login'}}
             </button>
       </ion-item>
          

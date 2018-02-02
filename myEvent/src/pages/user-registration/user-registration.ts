@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { UserAccountPage } from '../user-account/user-account';
+import { EventsPage } from '../events/events';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the UserRegistrationPage page.
@@ -17,6 +19,9 @@ import { UserAccountPage } from '../user-account/user-account';
 })
 export class UserRegistrationPage {
 
+  UserEmail:string;
+  UserPassword:string;
+
   userLogin: Boolean = true;
   userReg: Boolean = true;
 
@@ -26,19 +31,39 @@ export class UserRegistrationPage {
      public navParams: NavParams,
      public auth: AuthenticationProvider
     ) {
-
+      // if(this.auth.currentUser){
+      //   this.navCtrl.push(UserAccountPage);
+      // }
   }
 
   redirect(){
     this.navCtrl.push(UserAccountPage);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserRegistrationPage');
-
+  ionViewWillEnter(){
     this.u =  this.auth.currentUser;
     console.log(this.u);
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UserRegistrationPage');
+
+    
+  }
+
+  // email login
+  userlogin() {
+    this.auth.emailLogin(this.UserEmail, this.UserPassword).then(() => this.afterSignIn());
+
+  }
+
+  // email sig up
+  userSignUp() {
+  this.auth.emailSignUp(this.UserEmail, this.UserPassword).then(() => this.afterSignIn());
+  }
+
+
+
 
   logout() {
     this.auth.signOut();
@@ -81,6 +106,7 @@ export class UserRegistrationPage {
       // this.router.navigate(['']);
       // this.notify.update('Welcome to Firestarter!!!', 'info');
       console.log("Login success!!!")
+      this.navCtrl.push(HomePage);
     }
 
 }

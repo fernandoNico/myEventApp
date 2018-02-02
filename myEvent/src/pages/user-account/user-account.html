@@ -12,34 +12,33 @@
 <ion-content padding>
     <ion-fab top right edge>
         <button ion-fab color="danger" (click)="logout()" >Logout</button>
-        
       </ion-fab>
-    <ion-card>
+    <ion-card *ngFor="let u of userInfo | async">
 
         <ion-item>
           <ion-avatar item-start>
-            <img src="https://cdn.pixabay.com/photo/2016/11/08/05/40/actor-1807557_960_720.jpg">
+                <img class="card-img-top" [src]="u.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" >
           </ion-avatar>
-          <h1>Fernando Nicolalde</h1>
+          <h1>{{u.name ? u.name : 'Edit User Name'}}</h1>
           <button ion-button outline  color="dark" item-end icon-left  (click)="editName = !editName" > Edit 
           </button> 
-          <p>nicolalde3006@gmail.com</p>
+          <p>{{ u.email }}</p>
         </ion-item>
         <br>
 
         <div *ngIf="editName">
             <ion-list>
                 <ion-item>
-                    <ion-input type="text" placeholder="Username"></ion-input>
+                    <ion-input type="text" [placeholder]="u.name ? u.name : 'Edit User Name'" [(ngModel)]=" u.name"  [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-item>
                 <ion-item>
-                        <button ion-button small    (click)="updateName()">Update Name</button>
+                        <button ion-button small    (click)="changeUserName(u.name)">Update Name</button>
                </ion-item>    
             </ion-list>
         </div>
         
 
-        <img src="https://cdn.pixabay.com/photo/2016/11/08/05/40/actor-1807557_960_720.jpg">
+        <img class="card-img-top" [src]="u.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" >
       
         <ion-card-content>
             <ion-item>

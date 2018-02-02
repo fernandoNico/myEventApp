@@ -29,7 +29,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Events', component: EventsPage },
       { title: 'Help', component: EventInfoPage },
-      { title: 'Login/Signup', component: UserRegistrationPage },
+      { title: 'Register', component: UserRegistrationPage },
       { title: 'My Account', component: UserAccountPage }
       
     ];

@@ -27,7 +27,7 @@
                       </button>
 
                       <button *ngIf="item.attending" ion-button  color="danger" outline item-start icon-left (click)="cancelAttendance(item.$key)" >
-                        <ion-icon name="checkmark-circle-outline"></ion-icon> Cancel
+                        <ion-icon name="close"></ion-icon> Cancel
                       </button>
 
                       <button [disabled]="item.bookmarked" ion-button color="danger" outline item icon-left (click)="bookmark(item.$key)" >
@@ -46,17 +46,17 @@
                 <ion-item class="btns">
                   <button ion-button  color="secondary" outline item-start icon-left 
                   
-                  (click)="AttendEvent(eventData.EventId, eventData.eventTitle, 
-                  eventData.eventStartDate, eventData.eventEndDate,
-                  eventData.eventStreet, eventData.eventPostcode   )">
+                  (click)="AttendEvent(eventInfo?.EventId, eventInfo?.eventTitle, 
+                  eventInfo?.eventStartDate, eventInfo?.eventEndDate,
+                  eventInfo?.eventStreet, eventInfo?.eventPostcode   )">
 
                       <ion-icon name="checkmark-circle-outline"></ion-icon> Register
                   </button>
 
                   <button ion-button color="danger" outline item icon-left 
-                  (click)="bookmarkEvent(eventData.EventId, eventData.eventTitle, 
-                  eventData.eventStartDate, eventData.eventEndDate,
-                  eventData.eventStreet, eventData.eventPostcode  )" >
+                  (click)="bookmarkEvent(eventInfo?.EventId, eventInfo?.eventTitle, 
+                  eventInfo?.eventStartDate, eventInfo?.eventEndDate,
+                  eventInfo?.eventStreet, eventInfo?.eventPostcode  )" >
                         <ion-icon name="bookmarks"></ion-icon>Save
                   </button>
 
@@ -75,25 +75,25 @@
 
       
         <div  class="t"> 
-            <h1 class="title">{{eventData.eventTitle}}</h1>
+            <h1 class="title">{{eventInfo?.eventTitle}}</h1>
         </div>
 
       
         <ion-item>
           <ion-icon name="calendar" item-start large></ion-icon>
-          <h3><b>Start</b> {{eventData.eventStartDate | date:'medium' }}</h3>
-          <h3><b>End</b> {{eventData.eventEndDate | date:'medium' }}</h3>
+          <h3><b>Start</b> {{eventInfo?.eventStartDate | date:'medium' }}</h3>
+          <h3><b>End</b> {{eventInfo?.eventEndDate | date:'medium' }}</h3>
         </ion-item>
       
         <ion-item>
           <ion-icon name="navigate" item-left large ></ion-icon>
-          <h3>{{eventStreet}}</h3>
+          <h3>{{Street}}</h3>
           <p>{{eventCity}}</p>
-          <h3>{{eventData.eventPostcode}}</h3>
+          <h3>{{eventInfo?.eventPostcode}}</h3>
         </ion-item>
             
         <ion-card-content>
-          {{eventData.eventDescription}}
+          {{eventInfo?.eventDescription}}
         </ion-card-content>
       
       </ion-card>
@@ -107,7 +107,8 @@
       <ion-list>
           <ion-item>
               Event Media Content
-              <button  ion-button  outline item-end icon-left clear (click)="getEventMedia()" >
+              <button  ion-button  outline item-end icon-left clear 
+              (click)="getEventMedia(eventInfo?.EventId)" >
                   <ion-icon name="arrow-forward"></ion-icon>
                 </button>
           </ion-item>
@@ -121,7 +122,8 @@
 
           <ion-item>
               Public Attendees
-              <button  ion-button  outline item-end icon-left clear (click)="getEventAttendees()">
+              <button  ion-button  outline item-end icon-left clear 
+              (click)="getEventAttendees(eventInfo?.EventId)">
                   <ion-icon name="arrow-forward"></ion-icon>
                 </button>
           </ion-item>

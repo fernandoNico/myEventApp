@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { UploadFile } from '../../providers/firebase-data/file';
+import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
-/**
- * Generated class for the UserEventFilesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -14,8 +12,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user-event-files.html',
 })
 export class UserEventFilesPage {
+  userUploads: Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public upSvc: FirebaseDataProvider,
+    private auth: AuthenticationProvider)  {
+
+    // this.uploads = this.upSvc.getUserUploads(this.auth.currentUserId);
+    this.userUploads = this.upSvc.getUserUploads(this.auth.currentUserId);
+    console.log(this.userUploads)
+  }
+
+  deleteUpload(upload: UploadFile) {
+    this.upSvc.deleteUpload(upload);
+    // this.notify.update(name + ' Deleted Successfully', 'danger');
   }
 
   ionViewDidLoad() {

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs/Observable';
 import { EventInfoPage } from '../event-info/event-info';
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { EventInfoPage } from '../event-info/event-info';
 export class EventsPage {
 
   eventsImages: Observable<any[]>;
+  userSavedEvents: Observable<any[]>;
 
   events: any[]
   selectedItem: any;
@@ -28,11 +30,16 @@ export class EventsPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private eventService: EventsDataProvider,
-    private upSvc: FirebaseDataProvider
+    private upSvc: FirebaseDataProvider,
+    public auth: AuthenticationProvider
   ) {
 
     this.eventsImages = this.upSvc.getEventsImages();
 
+    this.userSavedEvents = this.upSvc.getUserEvents(this.auth.currentUserId)
+      .map(items => items.filter(item => item.attending || item.bookmarked ))
+      .filter(items => items && items.length > 0  );
+      console.log(this.userSavedEvents);
 
     this.eventService.getEvents().subscribe(eventos => {
       if(eventos){
@@ -41,8 +48,8 @@ export class EventsPage {
       }
     });
   }
-  getEventInfo(eventos){
-    this.navCtrl.push(EventInfoPage, {eventos})
+  getEventInfo(id){
+   this.navCtrl.push(EventInfoPage, {id})
   }
 
   val(num: any){

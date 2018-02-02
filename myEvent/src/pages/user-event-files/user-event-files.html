@@ -15,16 +15,17 @@
 
 <ion-content padding>
     <h1 class="location">My Files</h1>
-    <ion-card>
+    <ion-card *ngFor="let load of userUploads | async">
         <ion-card-header>
-          Header
+            {{load.name}}
         </ion-card-header>
         <ion-card-content>
-            <button ion-button small color="primary"  item-end icon-left > 
+            <a ion-button [href]="load.url" small color="primary"  item-end icon-left > 
                 <ion-icon name="download"></ion-icon> Download
-            </button>
+            </a>
 
-            <button ion-button small color="danger"  item-end icon-left >
+            <button ion-button small color="danger"  item-end icon-left
+            (click)='deleteUpload(load)' >
                 <ion-icon name="trash"></ion-icon> Delete
             </button>
         </ion-card-content>

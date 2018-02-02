@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { Observable } from 'rxjs/Observable';
 
-/**
- * Generated class for the UserPublicProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,7 +12,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UserPublicProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userdata: Observable<any[]>;
+  userUploads: Observable<any[]>;
+
+  profileId: string;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private upSvc: FirebaseDataProvider ) {
+
+    this.profileId = this.navParams.get('userId');
+    console.log(this.profileId);
+
+    this.userdata = this.upSvc.getUserData(this.profileId);
+    this.userUploads = this.upSvc.getUserUploads(this.profileId);
+
   }
 
   ionViewDidLoad() {

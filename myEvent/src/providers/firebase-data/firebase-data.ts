@@ -86,7 +86,7 @@ export class FirebaseDataProvider {
     return this.uploads;
   }
 
-  getEventAttendees(eventId: number) {
+  getEventAttendees(eventId: string) {
     this.userEvents = this.db.list(this.basePatheventsSaved, ref=> ref.orderByChild('eventId').equalTo(eventId)).snapshotChanges().map((actions) => {
       return actions.map((a) => {
         const data = a.payload.val();

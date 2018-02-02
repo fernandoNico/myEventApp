@@ -15,51 +15,50 @@
 
 <ion-content padding>
     <h1 class="location">Confirmed Events</h1>
-    <ion-card>
+    <ion-card *ngFor="let event of userEvents | async" >
 
-
-        <!-- <ion-card *ngFor="let e of events "> -->
-        <!-- <ion-card *ngFor="let e of events "> -->
-
-        <!-- <div *ngFor="let img of eventsImages | async">
-            <div *ngIf="e.EventId == val(img.id)">
-                    <img  class="card-img-top" [src]="img.imageurl" alt="Card image cap">
-            </div>         
-        </div> -->
-        <img src="https://cdn.pixabay.com/photo/2018/01/22/21/12/lion-3099986_960_720.jpg">
+        <div *ngFor="let e of eventsImages | async">
+            <img   *ngIf="  event.eventId == val(e.id)" [src]="e.imageurl || 'https://api.adorable.io/avatars/109/fire.png'" alt="Card image cap">
+        </div>
 
         <div  class="t"> 
-            <h1 class="title">Ecuador</h1>
+            <h1 class="title">{{event.eventTitle}}</h1>
         </div>
 
         <ion-item> 
           <ion-icon name="calendar" item-start large></ion-icon>
-          <h3>Date and Time</h3>
-          <p>d</p>
+          <h3>Start Date</h3>
+          <p>{{event.eventStartDate | date:'medium' }}</p>
         </ion-item>
 
         <ion-item>
           <ion-icon name="navigate" item-left large ></ion-icon>
           <h3>Location</h3>
-          <p> d</p>
+          <p>{{event.eventPostcode}}</p>
         </ion-item>
 
         <ion-item>
           <ion-list>
               <ion-item>
-                  <button ion-button small  color="secondary" outline item-start icon-left >
-                      <ion-icon name="eye"></ion-icon>
+                  <button ion-button small  
+                    [color]="event.publicProfile ? 'secondary' : 'danger' " 
+                    outline item-start icon-left 
+                    (click)="updatePublicProfile(event.$key,!event.publicProfile)" >
+                      <ion-icon [name]="event.publicProfile? 'eye':'eye-off'"></ion-icon>
                     </button>
-                    <button ion-button small color="danger" outline item-start icon-left >
+
+                    <button ion-button small color="danger" outline item-start icon-left
+                    (click)="getEventInfo(event.eventId)" >
                         <ion-icon name="information-circle"></ion-icon>
                       </button>
 
-                <button ion-button small   (click)="getEventInfo(e)" outline item-end   icon-left>
+                <button ion-button small  outline item-end   icon-left>
                   <ion-icon name="paper"></ion-icon>
                  
                 </button>
 
-                <button ion-button small color="dark" outline item-end icon-left >
+                <button ion-button small color="dark" outline item-end icon-left 
+                (click)="cancelAttendance(event.$key)" >
                     <ion-icon name="close"></ion-icon>
                    
                   </button>
