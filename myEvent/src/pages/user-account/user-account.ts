@@ -51,13 +51,8 @@ export class UserAccountPage {
           message: 'Acess Denied! Must Login',
           position: 'top',
           duration: 3000,
-          // showCloseButton: true,
-          // closeButtonText: 'close',
           cssClass: 'styles'
-
-          
         }
-
         this.toast.create(this.toastOptions).present();
       }
 
@@ -70,6 +65,14 @@ export class UserAccountPage {
   changeUserName(name: string){
     this.auth.updateItem(this.auth.currentUserId, { name: name });
     this.editName = !this.editName;
+
+    this.toastOptions = {
+      message: 'Name Updated Successfully',
+      position: 'top',
+      duration: 2000,
+      cssClass: 'styles'
+    }
+    this.toast.create(this.toastOptions).present();
   }
 
 
@@ -81,13 +84,8 @@ export class UserAccountPage {
       message: 'You have logged off successfully',
       position: 'top',
       duration: 3000,
-      // showCloseButton: true,
-      // closeButtonText: 'close',
       cssClass: 'styles'
-
-      
     }
-
     this.toast.create(this.toastOptions).present();
 
   }
@@ -106,7 +104,13 @@ export class UserAccountPage {
     if (file && file.length === 1) {
       this.currentUpload = new UploadFile(file.item(0));
       this.upSvc.pushNewImageUpload(this.currentUpload, this.auth.currentUserId);
-      // this.notify.update('Profile Picture Updated Successfully', 'info');
+      this.toastOptions = {
+        message: 'Profile Picture Updated Successfully',
+        position: 'top',
+        duration: 2000,
+        cssClass: 'styles'
+      }
+      this.toast.create(this.toastOptions).present();
     
     } else {
       console.error('No file found!');

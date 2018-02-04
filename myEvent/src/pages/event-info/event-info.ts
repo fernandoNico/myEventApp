@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ToastOptions } from 'ionic-angular';
 import { EventContentPage } from '../event-content/event-content';
 import { EventOrganiserPage } from '../event-organiser/event-organiser';
 import { EventAttendeesPage } from '../event-attendees/event-attendees';
@@ -43,11 +43,12 @@ export class EventInfoPage {
   eventInfo:any;
   maint: string;
 
+  toastOptions: ToastOptions;
 
   constructor( public navParams: NavParams, 
     public navCtrl: NavController,
     private eventService: EventsDataProvider,
-    private upSvc: FirebaseDataProvider,
+    private upSvc: FirebaseDataProvider, private toast: ToastController,
     public authentication: AuthenticationProvider,) {
 
     // this.eventData = this.navParams.get('id');
@@ -84,29 +85,6 @@ export class EventInfoPage {
 
   }
 
-    // this.eventInfo = this.eventService.getEventById(this.eId);
-    // console.log(this.eventInfo)
-
-    // console.log(this.eventData)
-    // console.log(this.eventData.eventPostcode)
-    // console.log(this.eventData.eventStreet)
- 
-
-   
-
-
-    
-      
-    
-    
-
-    // console.log(splits[0]);
-    // console.log(splits[5]);
-
-
-  //}
-
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventInfoPage');
   }
@@ -119,7 +97,13 @@ export class EventInfoPage {
     let v = String(value);
     console.log(v); 
     this.upSvc.AttendEvent(v, eventTitle, eventStartDate, eventEndDate, eventStreet, eventPostcode );
- 
+
+    this.toastOptions = {
+      message: 'Attendance Registered Successfully',
+      position: 'top',
+      duration: 3000,
+    }
+     this.toast.create(this.toastOptions).present();
   }
 
   bookmarkEvent(value: string, eventTitle: string, eventStartDate: string,
@@ -127,22 +111,47 @@ export class EventInfoPage {
     let va = String(value);
     console.log(va); 
     this.upSvc.bookmarkEvent(va, eventTitle, eventStartDate, eventEndDate, eventStreet, eventPostcode);
-  }
 
+    this.toastOptions = {
+      message: 'Event Bookmarked Successfully',
+      position: 'top',
+      duration: 3000,
+    }
+     this.toast.create(this.toastOptions).present();
+  }
 
   cancelAttendance(keys: any){
     let cancel = false;
     this.upSvc.updateEventRegister(keys, { attending: cancel });
+
+    this.toastOptions = {
+      message: 'Attendance Cancelled Successfully',
+      position: 'top',
+      duration: 2000,
+    }
+    this.toast.create(this.toastOptions).present();
   }
 
   updateAttendance(keys: any){
     let attend = true;
     this.upSvc.updateEventRegister(keys, { attending: attend });
+    this.toastOptions = {
+      message: 'Attendance Registered Successfully',
+      position: 'top',
+      duration: 3000,
+    }
+     this.toast.create(this.toastOptions).present();
   }
 
   bookmark(keys: any){
     let bookmark = true;
     this.upSvc.updateEventRegister(keys, { bookmarked: bookmark });
+    this.toastOptions = {
+      message: 'Event Bookmarked Successfully',
+      position: 'top',
+      duration: 3000,
+    }
+     this.toast.create(this.toastOptions).present();
   }
 
 
@@ -173,17 +182,6 @@ export class EventInfoPage {
         }
     );
   }
-
- 
-
-    //     this.lat =  this.AddressList.latitude;
-    //     this.lng =  this.AddressList.longitude;
-    //     console.log(this.AddressList);
-    //     console.log(this.lat);
-    //     console.log(this.lng);
-
-  
-
 
   getEventMedia(eventid){
     console.log(eventid)

@@ -1,14 +1,15 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>MyEvent</ion-title>
+      <ion-title><h2>MyEvent</h2></ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)"
+       (click)="openPage(p)">
+        <h1>{{p.title}}</h1>
       </button>
     </ion-list>
   </ion-content>

@@ -1,6 +1,6 @@
 events-list {
     .home {
-        background:url("https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_1280.jpg") no-repeat center center fixed; 
+        background:url("https://cdn.pixabay.com/photo/2018/01/16/23/37/sunset-3087145_960_720.jpg") no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
@@ -15,6 +15,13 @@ events-list {
         font-family: 'Anton', sans-serif;
         font-size: 2.5rem;
         color: white
+       /* font-family: 'Paytone One', sans-serif; */
+    }
+
+    h2 {
+        font-family: 'Anton', sans-serif;
+        font-size: 1.9rem;
+        color: black
        /* font-family: 'Paytone One', sans-serif; */
     }
 

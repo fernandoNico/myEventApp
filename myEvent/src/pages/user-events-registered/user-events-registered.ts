@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ToastOptions } from 'ionic-angular';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs/Observable';
@@ -15,11 +15,11 @@ import { EventInfoPage } from '../event-info/event-info';
 export class UserEventsRegisteredPage {
   userEvents: Observable<any[]>;
   eventsImages: Observable<any[]>;
-
+  toastOptions: ToastOptions;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private upSvc: FirebaseDataProvider,
+    private upSvc: FirebaseDataProvider, private toast: ToastController,
     private auth: AuthenticationProvider) {
 
       this.eventsImages = this.upSvc.getEventsImages();
@@ -37,11 +37,12 @@ export class UserEventsRegisteredPage {
 
   updatePublicProfile(key: any , value: boolean){
     this.upSvc.updateEventRegister(key, { publicProfile: value });
-    // if(value){
-    //   this.notify.update('Public profile = On Updated Successfully', 'success');
-    // }else{
-    //   this.notify.update('Public profile = Off Updated Successfully', 'danger');
-    //}
+    this.toastOptions = {
+      message: 'Public Profile Update Successfully',
+      position: 'top',
+      duration: 2000,
+    }
+    this.toast.create(this.toastOptions).present();
    
   }
 
@@ -52,6 +53,13 @@ export class UserEventsRegisteredPage {
   cancelAttendance(keys: any){
     let cancel = false;
     this.upSvc.updateEventRegister(keys, { attending: cancel });
+
+    this.toastOptions = {
+      message: 'Attendance Cancelled Successfully',
+      position: 'top',
+      duration: 2000,
+    }
+    this.toast.create(this.toastOptions).present();
     console.log(cancel); 
   }
 

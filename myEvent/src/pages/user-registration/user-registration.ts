@@ -33,11 +33,7 @@ export class UserRegistrationPage {
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     public auth: AuthenticationProvider, private toast: ToastController
-    ) {
-      // if(this.auth.currentUser){
-      //   this.navCtrl.push(UserAccountPage);
-      // }
+     public auth: AuthenticationProvider, private toast: ToastController) {
   }
 
   redirect(){
@@ -95,26 +91,15 @@ export class UserRegistrationPage {
         .then(() => this.afterSignIn());
     }
   
-    /// Anonymous Sign In
-  
-    // signInAnonymously() {
-    //   this.auth.anonymousLogin()
-    //     .then(() => this.afterSignIn());
-    // }
-  
-  
     /// Shared
-  
     private afterSignIn(): void {
-
-      console.log("Login success!!!")
       this.toastOptions = {
         message: 'You have logged in successfully',
         position: 'top',
         duration: 3000,
-        // showCloseButton: true,
-        // closeButtonText: 'close',
-        // cssClass: 'styles'
+        //  toastOptions: ToastOptions;
+        // this.toast.create(this.toastOptions).present();
+        // private toast: ToastController
       }
       this.toast.create(this.toastOptions).present();
       this.navCtrl.push(MyApp,);

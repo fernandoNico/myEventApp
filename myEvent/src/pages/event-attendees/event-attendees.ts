@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ToastOptions } from 'ionic-angular';
 import { UserPublicProfilePage } from '../user-public-profile/user-public-profile';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
 
 
@@ -15,9 +16,10 @@ export class EventAttendeesPage {
   allUsersdata: Observable<any[]>;
   eventAttendees: Observable<any[]>;
   eId: number
+  toastOptions: ToastOptions;
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
+  constructor(public navCtrl: NavController, public auth: AuthenticationProvider,
+    public navParams: NavParams,private toast: ToastController,
     private upSvc: FirebaseDataProvider ){
 
     this.eId = this.navParams.get('eId');
@@ -34,6 +36,26 @@ export class EventAttendeesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventAttendeesPage');
   }
+
+  ionViewCanEnter(){
+
+    if(!this.auth.authenticated){
+      console.log("No access");
+      this.toastOptions = {
+        message: 'Acess Denied! Must Login',
+        position: 'top',
+        duration: 3000,
+        showCloseButton: true,
+        closeButtonText: 'Close'
+      }
+      this.toast.create(this.toastOptions).present();
+    }
+
+  return this.auth.authenticated;
+ 
+}
+
+
 
   getUserPublicProfile(userId){
     // console.log(userId)

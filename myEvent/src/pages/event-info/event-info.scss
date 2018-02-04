@@ -21,11 +21,15 @@ page-event-info {
         text-align: center;
         padding-top: 10px
     }
-    h1,{
+    h1{
         font-family: 'Anton', sans-serif;
         font-size: 2.5rem;
         color: white
        /* font-family: 'Paytone One', sans-serif; */
+      }
+
+      a{
+          text-decoration: none;
       }
 
 }   

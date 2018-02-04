@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ToastOptions } from 'ionic-angular';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { Observable } from 'rxjs/Observable';
@@ -19,9 +19,10 @@ import { Observable } from 'rxjs/Observable';
 export class UserEventsBookmarkedPage {
   userSavedEvents: Observable<any[]>;
   eventsImages: Observable<any[]>;
-  
+  toastOptions: ToastOptions;
+
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
+    public navParams: NavParams, private toast: ToastController, 
     private upSvc: FirebaseDataProvider,
     private auth: AuthenticationProvider) {
 
@@ -44,7 +45,14 @@ export class UserEventsBookmarkedPage {
   AttendEvent(keys: any){
     let attend = true;
     this.upSvc.updateEventRegister(keys, { attending: attend });
-    // this.notify.update('Attendance Registered Successfully', 'success');
+
+    this.toastOptions = {
+      message: 'Attendance Registered Successfully',
+      position: 'top',
+      duration: 3000,  
+    }
+    this.toast.create(this.toastOptions).present();
+
     console.log(attend); 
   }
 
