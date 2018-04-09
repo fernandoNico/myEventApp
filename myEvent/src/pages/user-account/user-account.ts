@@ -38,12 +38,12 @@ export class UserAccountPage {
       
   // console.log(this.auth.currentUserId)
   this.userInfo = this.upSvc.getUserData(this.auth.currentUserId);
-  console.log(this.userInfo)
-  // console.log(this.auth.authenticated);
+  console.log(this.auth.currentUserId);
+  console.log(this.auth.authenticated);
 
   }
 
-  ionViewCanEnter(){
+  ionViewCanEnter(): boolean{
 
       if(!this.auth.authenticated){
         console.log("No access");

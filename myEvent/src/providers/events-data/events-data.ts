@@ -25,8 +25,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class EventsDataProvider {
 
-  apiKey = 'kH6Iob66dkqdMFQThCczyQ12057';
-
+  //apiKey = 'vXOz9FPWLUa_3kJnSc8U1Q12813';
+  apiKey = '8_zbUjYH70atdEX28Ac5Ww12858';
 
   constructor(public http: HttpClient) {
     console.log('Hello EventsDataProvider Provider');

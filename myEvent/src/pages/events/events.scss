@@ -1,19 +1,18 @@
 events-list {
     .home {
-        background:url("https://cdn.pixabay.com/photo/2018/01/16/23/37/sunset-3087145_960_720.jpg") no-repeat center center fixed; 
+        background:url('../assets/imgs/ld38.jpg') no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
     }
 
     .location{
-        // font-size:40px;
         text-align: center
     }
 
-    h1,{
+    h1 {
         font-family: 'Anton', sans-serif;
-        font-size: 2.5rem;
+        font-size: 3.9rem;
         color: white
        /* font-family: 'Paytone One', sans-serif; */
     }

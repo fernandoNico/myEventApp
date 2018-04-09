@@ -23,12 +23,14 @@ export class AuthenticationProvider {
 
   this.afAuth.authState.subscribe((auth) => {
             this.authState = auth
+
+  console.log('Hello AuthenticationProvider Provider');
             console.log(this.authState)
     });
 
     this.itemsRef = db.list('/users')
 
-    // console.log('Hello AuthenticationProvider Provider');
+    
   }
 
   updateItem(key: string, value: any): void {

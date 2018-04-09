@@ -29,25 +29,27 @@ export class UserRegistrationPage {
 
   u: any;
 
-  toastOptions: ToastOptions;
+  toastOptionss: ToastOptions;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     public auth: AuthenticationProvider, private toast: ToastController) {
+     public auth: AuthenticationProvider, private toasts: ToastController) {
+      this.u =  this.auth.currentUser;
   }
 
   redirect(){
     this.navCtrl.push(UserAccountPage);
   }
 
-  ionViewWillEnter(){
+  ionViewDidEnter(){
     this.u =  this.auth.currentUser;
     console.log(this.u);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserRegistrationPage');
-
+    this.u =  this.auth.currentUser;
+    console.log(this.u);
     
   }
 
@@ -92,17 +94,15 @@ export class UserRegistrationPage {
     }
   
     /// Shared
-    private afterSignIn(): void {
-      this.toastOptions = {
+    public afterSignIn(): void {
+      this.toastOptionss = {
         message: 'You have logged in successfully',
         position: 'top',
         duration: 3000,
-        //  toastOptions: ToastOptions;
-        // this.toast.create(this.toastOptions).present();
-        // private toast: ToastController
+        cssClass: 'styles'
       }
-      this.toast.create(this.toastOptions).present();
-      this.navCtrl.push(MyApp,);
+      this.toasts.create(this.toastOptionss).present();
+      //this.navCtrl.push(MyApp);
     }
 
 }

@@ -49,7 +49,7 @@ export class FirebaseDataProvider {
 
     // this.itemsRef = db.list(`savedEvents/${this.auth.currentUserId}`)
     this.itemsRef = db.list('/savedEvents')
-    console.log(this.itemsRef)
+    //console.log(this.itemsRef)
   }
 
   getUserData(uid: string) {
