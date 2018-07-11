@@ -9,12 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
-/**
- * Generated class for the EventInfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+// The code below generates the data required to show a conference full details based on the conference id
 
 @IonicPage()
 @Component({

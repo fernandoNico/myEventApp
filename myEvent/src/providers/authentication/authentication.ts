@@ -4,10 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 /*
-  Generated class for the AuthenticationProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
+ The code below work as service to fetch and push data to firebase
 */
 @Injectable()
 export class AuthenticationProvider {

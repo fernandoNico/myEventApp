@@ -15,6 +15,10 @@ import { UploadFile } from '../../providers/firebase-data/file';
 import { MyApp } from '../../app/app.component';
 import { ToastOptions } from 'ionic-angular/components/toast/toast-options';
 
+// The code below shows the methods created to fecth data and perform operations when the user has logged in successfully
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-user-account',

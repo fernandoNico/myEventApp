@@ -6,6 +6,8 @@ import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-dat
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
 
+// the code below shows how an user's files stored in firebase are retrieved using the user's ID
+
 @IonicPage()
 @Component({
   selector: 'page-user-event-files',

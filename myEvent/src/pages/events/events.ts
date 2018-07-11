@@ -3,14 +3,13 @@ import { NavController, NavParams } from 'ionic-angular';
 import { EventsDataProvider } from '../../providers/events-data/events-data';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AngularFireDatabase } from 'angularfire2/database';
-
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs/Observable';
 import { EventInfoPage } from '../event-info/event-info';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
+
+// The code below generates the code required to show all available conferences
 
 
 @Component({
@@ -69,15 +68,5 @@ export class EventsPage {
   title: string = 'My first AGM project';
   lat: number = 51.678418;
   lng: number = 7.809007;
-
-
-
   
-
-
-
-
-
-
-
 }

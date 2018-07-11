@@ -4,12 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
-/**
- * Generated class for the UserEventWebsitePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+// The code below shows how an authenticated user can add a personal website
 
 @IonicPage()
 @Component({

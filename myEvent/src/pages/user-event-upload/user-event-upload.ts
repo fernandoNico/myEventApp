@@ -4,7 +4,8 @@ import { UploadFile } from '../../providers/firebase-data/file';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
-
+// The code below shows how to upload a file to firebase
+// Note the user must be logged in to do so
 
 @IonicPage()
 @Component({

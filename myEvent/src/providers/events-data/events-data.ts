@@ -8,20 +8,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/Observable/throw';
 import 'rxjs/add/operator/toPromise';
 
-// import { Injectable } from '@angular/core';
-// import { Http, HttpModule, Response } from '@angular/http';
-// import { Headers, RequestOptions } from '@angular/http';
-// import { Observable  } from 'rxjs/Observable';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/Observable/throw';
-// import 'rxjs/add/operator/toPromise';
-/*
-  Generated class for the EventsDataProvider provider.
+// The code below performs web api calls to retrievd data stored in the sql server(notice the end points)
+//  As well, here api call are executed(Address)
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class EventsDataProvider {
 

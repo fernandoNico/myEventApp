@@ -4,6 +4,9 @@ import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-dat
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { Observable } from 'rxjs/Observable';
 
+// The code below generates the data required to show an user public profile.
+// Notice that the data is retrieved using the users's ID
+
 
 @IonicPage()
 @Component({

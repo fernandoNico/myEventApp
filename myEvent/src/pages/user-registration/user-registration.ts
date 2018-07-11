@@ -7,12 +7,8 @@ import { HomePage } from '../home/home';
 import { MyApp } from '../../app/app.component';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
-/**
- * Generated class for the UserRegistrationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+// The code below shows how sign up and log in is performed
+// Note that to do so the methods uses the authentication service provider
 
 @IonicPage()
 @Component({

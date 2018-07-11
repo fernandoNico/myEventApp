@@ -7,6 +7,8 @@ import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-dat
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { EventInfoPage } from '../event-info/event-info';
 
+// The code below fetch the registered events associated to an user as well as perform update operations
+
 @IonicPage()
 @Component({
   selector: 'page-user-events-registered',

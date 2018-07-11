@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { UploadFile } from '../../providers/firebase-data/file';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 
+// The code below shows the files uploaded associated to a conference
+
 @IonicPage()
 @Component({
   selector: 'page-event-content',

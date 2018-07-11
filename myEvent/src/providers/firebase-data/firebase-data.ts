@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { UploadFile } from './file';
 import { AuthenticationProvider } from '../authentication/authentication';
 
-
+// The code below shows how to retrieved and push data to firebase
+// This service is across the application to perform data operations
 
 interface eventSave {
   $key?: string;

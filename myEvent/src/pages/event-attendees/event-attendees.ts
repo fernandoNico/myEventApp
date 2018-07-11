@@ -5,7 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
-
+// The code below generates the list of a conference attendees
+// The list will only shows users that made their profile public
 
 @IonicPage()
 @Component({
@@ -27,6 +28,7 @@ export class EventAttendeesPage {
     
     this.allUsersdata = this.upSvc.getAllUsersData();
 
+    // The code below retrieves the users data that made their profile public
     this.eventAttendees = this.upSvc.getEventAttendees(this.eId.toString())
     .map(items => items.filter(item => item.publicProfile))
     .filter(items => items && items.length > 0 );
